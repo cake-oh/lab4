@@ -10,7 +10,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/nomurak/cltw57mts01f701r57tp16jyn/
 }).addTo(map41); // add that tile layer to the map object
 
 // this fetches the local geojson data
-fetch('/data/Principal_Ports.geojson')
+fetch('data/Principal_Ports.geojson')
     .then(response => response.json())
     .then(data => {
         L.geoJSON(data, {
@@ -45,11 +45,3 @@ fetch('/data/Principal_Ports.geojson')
     .catch(error => console.error('Error: ', error));
 
 
-
-
-    
-//// establish functions ////
-/// number formatting
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
