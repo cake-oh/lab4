@@ -13,33 +13,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/nomurak/cltw57mts01f701r57tp16jyn/
 fetch('data/Principal_Ports.geojson')
     .then(response => response.json())
     .then(data => {
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                var portName = feature.properties.PORT_NAME;
-                var markerSize = feature.properties.TOTAL * 0.00000005; 
-                markerSize = Math.max(markerSize, 2); // set minimum size         
-
-                var marker = L.circleMarker(latlng, {
-                    radius: markerSize,
-                    fillColor: "orange",
-                    color: "black",
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                });
-                // make popup
-                marker.bindPopup(portName);
-                // make mouseover event
-                marker.on('mouseover', function(e) {
-                    this.openPopup();
-                });
-                marker.on('mouseout', function(e) {
-                    this.closePopup();
-                });
-
-                return marker;
-            }
-        })
+        L.geoJSON(data)
         .addTo(map41);
     })
     .catch(error => console.error('Error: ', error));
